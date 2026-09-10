@@ -1,77 +1,62 @@
 <?php
 /**
- * index.php - Tableau de bord de l'éditeur de mails
+ * index.php - Liste des templates d'e-mail et accès au répertoire
  */
 $dataFile = __DIR__ . '/data/templates.json';
 $templates = [];
 
 if (file_exists($dataFile)) {
-    $jsonContent = file_get_contents($dataFile);
-    $templates = json_decode($jsonContent, true) ?: [];
+    $templates = json_decode(file_get_contents($dataFile), true) ?: [];
 }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Gestionnaire de Templates de Mails</title>
+    <title>Emailor - Gestionnaire de Templates</title>
     <link rel="stylesheet" href="assets/css/editor.css">
 </head>
 <body>
-    <div class="container">
-        <header class="dashboard-header">
-            <h1>Mes Templates d'E-mails</h1>
-            <a href="editor.php" class="btn btn-primary">+ Créer un nouveau template</a>
-        </header>
+    <div class="editor-layout" style="display: block; max-width: 900px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+            <h2 style="margin: 0;">Mes Templates d'E-mails</h2>
+            <div style="display: flex; gap: 10px;">
+                <a href="directory.php" class="btn btn-secondary">Gérer le répertoire</a>
+                <a href="editor.php" class="btn btn-primary">+ Nouveau template</a>
+            </div>
+        </div>
 
-        <section class="template-list">
-            <?php if (empty($templates)): ?>
-                <p class="no-template">Aucun template enregistré pour le moment. Créez votre premier modèle !</p>
-            <?php else: ?>
-                <table>
-                    <thead>
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background: #f1f1f1; text-align: left;">
+                    <th style="padding: 10px; border-bottom: 1px solid #ddd;">Nom</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #ddd;">Objet</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #ddd;">Dernière modification</th>
+                    <th style="padding: 10px; border-bottom: 1px solid #ddd; text-align: right;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (empty($templates)): ?>
+                    <tr>
+                        <td colspan="4" style="padding: 15px; text-align: center; color: #777;">Aucun template créé pour le moment.</td>
+                    </tr>
+                <?php else: ?>
+                    <?php foreach ($templates as $id => $tpl): ?>
                         <tr>
-                            <th>Nom du Template</th>
-                            <th>Dernière modification</th>
-                            <th>Actions</th>
+                            <td style="padding: 10px; border-bottom: 1px solid #eee;"><?= htmlspecialchars($tpl['name'] ?? 'Sans nom') ?></td>
+                            <td style="padding: 10px; border-bottom: 1px solid #eee;"><?= htmlspecialchars($tpl['subject'] ?? '') ?></td>
+                            <td style="padding: 10px; border-bottom: 1px solid #eee;"><?= htmlspecialchars($tpl['updated_at'] ?? '-') ?></td>
+                            <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">
+                                <a href="editor.php?id=<?= $id ?>" class="btn btn-secondary" style="padding: 5px 10px; text-decoration: none; font-size: 13px;">Éditer</a>
+                                <?php if (file_exists(__DIR__ . '/template/' . $id . '.html')): ?>
+                                    <a href="template/<?= $id ?>.html" target="_blank" class="btn btn-secondary" style="padding: 5px 10px; text-decoration: none; font-size: 13px; margin-left: 5px;">Voir</a>
+                                <?php endif; ?>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($templates as $id => $tpl): ?>
-                            <tr>
-                                <td><strong><?= htmlspecialchars($tpl['name']) ?></strong></td>
-                                <td><?= htmlspecialchars($tpl['updated_at'] ?? 'Inconnue') ?></td>
-                                <td class="actions">
-                                    <a href="editor.php?id=<?= urlencode($id) ?>" class="btn btn-small">Modifier</a>
-                                    <a href="preview.php?id=<?= urlencode($id) ?>" target="_blank" class="btn btn-small btn-secondary">Prévisualiser</a>
-                                    <button onclick="deleteTemplate('<?= $id ?>')" class="btn btn-small btn-danger">Supprimer</button>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php endif; ?>
-        </section>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
-
-    <script>
-    function deleteTemplate(id) {
-        if (confirm("Voulez-vous vraiment supprimer ce template ?")) {
-            fetch('ajax/delete-template.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: id })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert("Erreur lors de la suppression.");
-                }
-            });
-        }
-    }
-    </script>
 </body>
 </html>

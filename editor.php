@@ -19,6 +19,13 @@ $currentTemplate = [
 if ($id && isset($templates[$id])) {
     $currentTemplate = $templates[$id];
 }
+
+// Répertoire d'adresses e-mail de test
+$testEmails = [
+    'cmillot2004@gmail.com',
+    'contact1@example.com',
+    'contact2@example.com'
+];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -63,12 +70,25 @@ if ($id && isset($templates[$id])) {
             <h3>Envoyer un test</h3>
             <div class="form-group">
                 <label for="test-email">Adresse e-mail :</label>
-                <input type="email" id="test-email" placeholder="votre@email.com" value="cmillot2004@gmail.com">
+                <input type="text" id="test-email" placeholder="votre@email.com" value="cmillot2004@gmail.com">
             </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: normal; cursor: pointer; line-height: 1.3;">
+                    <input type="checkbox" id="select-all-emails" onchange="toggleAllEmails(this)" style="margin: 0; flex-shrink: 0; width: 16px; height: 16px;">
+                    <span>Toutes les adresses du répertoire</span>
+                </label>
+            </div>
+
             <button onclick="sendTestEmail('<?= $id ?>')" class="btn btn-secondary btn-full">Envoyer le test</button>
 
-            <div class="actions-save">
-                <button onclick="saveTemplate('<?= $id ?>')" class="btn btn-primary btn-full">Enregistrer le template</button>
+            <div class="actions-save" style="margin-top: 15px; display: flex; gap: 10px;">
+                <?php if ($id && file_exists(__DIR__ . '/template/' . $id . '.html')): ?>
+                    <a href="template/<?= $id ?>.html" target="_blank" class="btn btn-secondary" style="flex: 1; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center;">Prévisualiser</a>
+                <?php else: ?>
+                    <button onclick="alert('Veuillez d\'abord enregistrer le template pour pouvoir le prévisualiser.');" class="btn btn-secondary" style="flex: 1;">Prévisualiser</button>
+                <?php endif; ?>
+                <button onclick="saveTemplate('<?= $id ?>')" class="btn btn-primary" style="flex: 1;">Enregistrer le template</button>
             </div>
         </aside>
 
@@ -84,7 +104,17 @@ if ($id && isset($templates[$id])) {
 
     <script>
         const initialData = <?= json_encode($currentTemplate['blocks'] ?? []) ?>;
+        const directoryEmails = <?= json_encode($testEmails) ?>;
         
+        function toggleAllEmails(checkbox) {
+            const emailInput = document.getElementById('test-email');
+            if (checkbox.checked) {
+                emailInput.value = directoryEmails.join(', ');
+            } else {
+                emailInput.value = 'cmillot2004@gmail.com';
+            }
+        }
+
         function sendTestEmail(id) {
             if (!id) {
                 alert("Veuillez d'abord enregistrer le template avant d'envoyer un test.");

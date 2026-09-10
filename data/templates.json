@@ -1,11 +1,11 @@
 {
     "tpl_6aa28a83e0146": {
-        "name": "test colonnes",
-        "subject": "test colonnes",
+        "name": "test final",
+        "subject": "test final",
         "blocks": [
             {
                 "type": "header",
-                "content": "Mon entreprise"
+                "content": "test final"
             },
             {
                 "type": "text",
@@ -35,6 +35,6 @@
                 "rightContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem"
             }
         ],
-        "updated_at": "2026-09-10 13:03:42"
+        "updated_at": "2026-09-10 13:34:25"
     }
 }
