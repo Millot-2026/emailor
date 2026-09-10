@@ -5,7 +5,7 @@
         "blocks": [
             {
                 "type": "header",
-                "content": "test final"
+                "content": "test final333"
             },
             {
                 "type": "text",
@@ -35,6 +35,42 @@
                 "rightContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem"
             }
         ],
-        "updated_at": "2026-09-10 13:34:25"
+        "updated_at": "2026-09-10 13:44:40"
+    },
+    "tpl_6aa26cd63b69e": {
+        "name": "test colonnes",
+        "subject": "test colonnes",
+        "blocks": [
+            {
+                "type": "header",
+                "content": "test colonnes"
+            },
+            {
+                "type": "image",
+                "url": "https:\/\/raw.githubusercontent.com\/Millot-2026\/emailor\/main\/assets\/images\/image-test.png"
+            },
+            {
+                "type": "title",
+                "content": "Test 22"
+            },
+            {
+                "type": "text",
+                "content": "RédigeLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.z votre paragraphe de texte ici..."
+            },
+            {
+                "type": "button",
+                "text": "Cliquez ici",
+                "url": "https:\/\/example.com"
+            },
+            {
+                "type": "spacer"
+            },
+            {
+                "type": "columns-2",
+                "leftContent": "Texte deghjhgj hjj  hj hgj j ghjgj ghgh hghhj la colonne de gauche...",
+                "rightContent": "Texte dej  hgj hgjhg hgghj ghgh ghj ghjgghghgh jgjj  la colonne de droite..."
+            }
+        ],
+        "updated_at": "2026-09-10 13:59:53"
     }
 }

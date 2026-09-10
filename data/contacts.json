@@ -3,6 +3,13 @@
         "id": "contact_6aa2952d27a58",
         "nom": "Millot",
         "prenom": "Christophe",
-        "email": "millot.christophe.2024@gmail.com"
+        "email": "cmillot2004@gmail.com"
+    },
+    {
+        "id": "contact_6aa297697eaf0",
+        "nom": "Millot",
+        "prenom": "Christophe",
+        "email": "millot.christophe.2024@gmail.com",
+        "active": true
     }
 ]

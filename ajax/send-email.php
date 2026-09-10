@@ -11,9 +11,9 @@ header('Content-Type: application/json');
 
 $input = json_decode(file_get_contents('php://input'), true);
 $id = $input['id'] ?? '';
-$to = trim($input['to'] ?? '');
+$toField = trim($input['to'] ?? '');
 
-if (!$id || !$to) {
+if (!$id || !$toField) {
     echo json_encode(['success' => false, 'error' => 'ID du template ou destinataire manquant.']);
     exit;
 }
@@ -41,21 +41,30 @@ if (!file_exists($htmlFile)) {
 $htmlContent = file_get_contents($htmlFile);
 $subject = $currentTemplate['subject'] ?? 'Message';
 
+// Séparer les adresses e-mail par virgule
+$recipients = array_map('trim', explode(',', $toField));
+
 $mail = new PHPMailer(true);
 
 try {
     // Configuration du serveur SMTP
     $mail->isSMTP();
-    $mail->Host       = 'smtp.gmail.com'; // Serveur SMTP (ex: Gmail)
+    $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'millot.christophe.2024@gmail.com'; // Ton e-mail
-    $mail->Password   = 'smjncaorbfskqbmz'; // Ton mot de passe d'application (16 caractères)
+    $mail->Username   = 'millot.christophe.2024@gmail.com';
+    $mail->Password   = 'smjncaorbfskqbmz';
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
-    // Expéditeur et destinataire
+    // Expéditeur
     $mail->setFrom('millot.christophe.2024@gmail.com', 'Mon Application');
-    $mail->addAddress($to);
+
+    // Ajouter chaque destinataire proprement
+    foreach ($recipients as $to) {
+        if (filter_var($to, FILTER_VALIDATE_EMAIL)) {
+            $mail->addAddress($to);
+        }
+    }
 
     // Contenu de l'e-mail au format HTML
     $mail->isHTML(true);

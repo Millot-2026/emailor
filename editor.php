@@ -20,12 +20,18 @@ if ($id && isset($templates[$id])) {
     $currentTemplate = $templates[$id];
 }
 
-// Répertoire d'adresses e-mail de test
-$testEmails = [
-    'cmillot2004@gmail.com',
-    'contact1@example.com',
-    'contact2@example.com'
-];
+// Chargement dynamique des contacts depuis le répertoire
+$contactFile = __DIR__ . '/data/contacts.json';
+$allContacts = file_exists($contactFile) ? (json_decode(file_get_contents($contactFile), true) ?: []) : [];
+
+// Ne conserver que les contacts marqués comme actifs
+$activeEmails = [];
+foreach ($allContacts as $c) {
+    if ($c['active'] ?? true) {
+        $activeEmails[] = $c['email'];
+    }
+}
+$defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -70,14 +76,15 @@ $testEmails = [
             <h3>Envoyer un test</h3>
             <div class="form-group">
                 <label for="test-email">Adresse e-mail :</label>
-                <input type="text" id="test-email" placeholder="votre@email.com" value="cmillot2004@gmail.com">
+                <input type="text" id="test-email" placeholder="votre@email.com" value="<?= htmlspecialchars($defaultEmail) ?>">
             </div>
 
             <div class="form-group" style="margin-bottom: 15px;">
                 <label style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: normal; cursor: pointer; line-height: 1.3;">
                     <input type="checkbox" id="select-all-emails" onchange="toggleAllEmails(this)" style="margin: 0; flex-shrink: 0; width: 16px; height: 16px;">
-                    <span>Toutes les adresses du répertoire</span>
+                    <span>Toutes les adresses du répertoire actif</span>
                 </label>
+                <div style="font-size: 11px; color: #888; margin-top: 3px;">(<a href="directory.php" target="_blank" style="color: #007bff; text-decoration: none;">Gérer les contacts</a>)</div>
             </div>
 
             <button onclick="sendTestEmail('<?= $id ?>')" class="btn btn-secondary btn-full">Envoyer le test</button>
@@ -104,14 +111,14 @@ $testEmails = [
 
     <script>
         const initialData = <?= json_encode($currentTemplate['blocks'] ?? []) ?>;
-        const directoryEmails = <?= json_encode($testEmails) ?>;
+        const activeDirectoryEmails = <?= json_encode($activeEmails) ?>;
         
         function toggleAllEmails(checkbox) {
             const emailInput = document.getElementById('test-email');
             if (checkbox.checked) {
-                emailInput.value = directoryEmails.join(', ');
+                emailInput.value = activeDirectoryEmails.join(', ');
             } else {
-                emailInput.value = 'cmillot2004@gmail.com';
+                emailInput.value = activeDirectoryEmails[0] || '';
             }
         }
 
