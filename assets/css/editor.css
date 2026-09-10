@@ -1,0 +1,255 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #333333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+th, td {
+    padding: 15px 20px;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    border-bottom: 1px solid #e9ecef;
+}
+
+tr:not(:last-child) td {
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    background-color: #007bff;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #bd2130;
+}
+
+.btn-small {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    margin-bottom: 8px;
+    background-color: #f8f9fa;
+    color: #333333;
+    border: 1px solid #ced4da;
+    text-align: left;
+}
+
+.btn-block:hover {
+    background-color: #e2e6ea;
+    color: #000000;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.editor-layout {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 350px;
+    background: #ffffff;
+    border-right: 1px solid #dee2e6;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e9ecef;
+    margin: 20px 0;
+}
+
+.actions-save {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.preview-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: #e9ecef;
+    overflow: hidden;
+}
+
+.preview-toolbar {
+    padding: 15px 20px;
+    background: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.email-canvas {
+    flex-grow: 1;
+    padding: 30px;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.email-container-mock {
+    width: 600px;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+    min-height: 400px;
+}
+
+.block-item {
+    position: relative;
+    border: 1px dashed transparent;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.block-item:hover {
+    border-color: #007bff;
+    background: #f8f9fa;
+}
+
+.block-controls {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: none;
+    gap: 5px;
+}
+
+.block-item:hover .block-controls {
+    display: flex;
+}
+
+.block-controls button {
+    background: #333;
+    color: #fff;
+    border: none;
+    padding: 2px 6px;
+    font-size: 11px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.block-controls button:hover {
+    background: #dc3545;
+}
+
+.block-edit-field {
+    width: 100%;
+    padding: 6px;
+    margin-top: 5px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    font-size: 13px;
+}

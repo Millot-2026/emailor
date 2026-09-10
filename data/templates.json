@@ -1,0 +1,90 @@
+{
+    "tpl_6aa26b8786115": {
+        "name": "Nouveau Template",
+        "subject": "",
+        "blocks": [
+            {
+                "type": "header",
+                "content": "Nom de votre entreprise \/ Logo"
+            },
+            {
+                "type": "title",
+                "content": "Titre principal de l'e-mail"
+            },
+            {
+                "type": "text",
+                "content": "lorem ipsum dolor sit amet."
+            },
+            {
+                "type": "image",
+                "url": "https:\/\/via.placeholder.com\/600x200"
+            },
+            {
+                "type": "spacer"
+            }
+        ],
+        "updated_at": "2026-09-10 10:34:15"
+    },
+    "tpl_6aa26c04589a4": {
+        "name": "Nouveau Template",
+        "subject": "",
+        "blocks": [
+            {
+                "type": "header",
+                "content": "Nom de votre entreprise \/ Logo"
+            },
+            {
+                "type": "title",
+                "content": "Titre principal de l'e-mail"
+            },
+            {
+                "type": "text",
+                "content": "Rédigez votre paragraphe de texte ici..."
+            },
+            {
+                "type": "button",
+                "text": "Cliquez ici",
+                "url": "https:\/\/example.com"
+            },
+            {
+                "type": "image",
+                "url": "https:\/\/via.placeholder.com\/600x200"
+            },
+            {
+                "type": "spacer"
+            }
+        ],
+        "updated_at": "2026-09-10 10:36:20"
+    },
+    "tpl_6aa26cd63b69e": {
+        "name": "Test",
+        "subject": "Test",
+        "blocks": [
+            {
+                "type": "header",
+                "content": "Test 2"
+            },
+            {
+                "type": "title",
+                "content": "Test 22"
+            },
+            {
+                "type": "text",
+                "content": "RédigeLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.z votre paragraphe de texte ici..."
+            },
+            {
+                "type": "button",
+                "text": "Cliquez ici",
+                "url": "https:\/\/example.com"
+            },
+            {
+                "type": "image",
+                "url": "https:\/\/via.placeholder.com\/600x200"
+            },
+            {
+                "type": "spacer"
+            }
+        ],
+        "updated_at": "2026-09-10 11:16:16"
+    }
+}
