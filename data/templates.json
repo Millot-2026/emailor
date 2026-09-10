@@ -33,9 +33,13 @@
                 "type": "columns-2",
                 "leftContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
                 "rightContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem"
+            },
+            {
+                "type": "image",
+                "url": "https:\/\/raw.githubusercontent.com\/Millot-2026\/emailor\/main\/assets\/images\/image-test.png"
             }
         ],
-        "updated_at": "2026-09-10 13:44:40"
+        "updated_at": "2026-09-10 14:18:18"
     },
     "tpl_6aa26cd63b69e": {
         "name": "test colonnes",
