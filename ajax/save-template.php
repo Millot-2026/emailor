@@ -60,7 +60,13 @@ foreach ($blocks as $block) {
         case 'button':
             $btnText = htmlspecialchars($block['text'] ?? 'Cliquez ici');
             $btnUrl = htmlspecialchars($block['url'] ?? '#');
-            $htmlContent .= '<table border="0" cellspacing="0" cellpadding="0" style="margin: 20px 0;"><tr><td align="center" bgcolor="#007bff" style="border-radius: 4px;"><a href="' . $btnUrl . '" target="_blank" style="font-size: 15px; font-weight: bold; color: #ffffff; text-decoration: none; padding: 12px 25px; border-radius: 4px; border: 1px solid #007bff; display: inline-block;">' . $btnText . '</a></td></tr></table>';
+            $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin: 20px 0;">';
+            $htmlContent .= '<tr><td align="center">';
+            $htmlContent .= '<table border="0" cellspacing="0" cellpadding="0">';
+            $htmlContent .= '<tr><td align="center" bgcolor="#007bff" style="border-radius: 4px;"><a href="' . $btnUrl . '" target="_blank" style="font-size: 15px; font-weight: bold; color: #ffffff; text-decoration: none; padding: 12px 25px; border-radius: 4px; border: 1px solid #007bff; display: inline-block;">' . $btnText . '</a></td></tr>';
+            $htmlContent .= '</table>';
+            $htmlContent .= '</td></tr>';
+            $htmlContent .= '</table>';
             break;
         case 'image':
             $imgUrl = htmlspecialchars($block['url'] ?? '');
@@ -73,13 +79,18 @@ foreach ($blocks as $block) {
             $rightText = nl2br(htmlspecialchars($block['rightContent'] ?? ''));
             $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 15px;">';
             $htmlContent .= '<tr>';
-            $htmlContent .= '<td align="left" valign="top" width="100%" style="padding-bottom: 15px;">';
-            $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" style="max-width: 270px; display: inline-block; vertical-align: top;">';
-            $htmlContent .= '<tr><td style="color: #555555; font-size: 15px; line-height: 1.5; padding-right: 10px;">' . $leftText . '</td></tr>';
-            $htmlContent .= '</table>';
-            $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" style="max-width: 270px; display: inline-block; vertical-align: top;">';
-            $htmlContent .= '<tr><td style="color: #555555; font-size: 15px; line-height: 1.5; padding-left: 10px;">' . $rightText . '</td></tr>';
-            $htmlContent .= '</table>';
+            $htmlContent .= '<td align="center" valign="top" style="font-size: 0; text-align: center;">';
+            
+            // Colonne gauche (technique fluid-hybrid pour empilement mobile automatique)
+            $htmlContent .= '<div style="display: inline-block; width: 100%; max-width: 270px; vertical-align: top; text-align: left;">';
+            $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td style="padding-right: 5px; padding-bottom: 10px; color: #555555; font-size: 15px; line-height: 1.5;">' . $leftText . '</td></tr></table>';
+            $htmlContent .= '</div>';
+            
+            // Colonne droite
+            $htmlContent .= '<div style="display: inline-block; width: 100%; max-width: 270px; vertical-align: top; text-align: left;">';
+            $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td style="padding-left: 5px; padding-bottom: 10px; color: #555555; font-size: 15px; line-height: 1.5;">' . $rightText . '</td></tr></table>';
+            $htmlContent .= '</div>';
+            
             $htmlContent .= '</td>';
             $htmlContent .= '</tr>';
             $htmlContent .= '</table>';
