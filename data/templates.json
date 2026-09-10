@@ -57,12 +57,16 @@
         "updated_at": "2026-09-10 10:36:20"
     },
     "tpl_6aa26cd63b69e": {
-        "name": "Test",
-        "subject": "Test",
+        "name": "test colonnes",
+        "subject": "test colonnes",
         "blocks": [
             {
                 "type": "header",
-                "content": "Test 2"
+                "content": "test colonnes"
+            },
+            {
+                "type": "image",
+                "url": "https:\/\/raw.githubusercontent.com\/Millot-2026\/emailor\/main\/assets\/images\/image-test.png"
             },
             {
                 "type": "title",
@@ -78,13 +82,14 @@
                 "url": "https:\/\/example.com"
             },
             {
-                "type": "image",
-                "url": "https:\/\/via.placeholder.com\/600x200"
+                "type": "spacer"
             },
             {
-                "type": "spacer"
+                "type": "columns-2",
+                "leftContent": "Texte deghjhgj hjj  hj hgj j ghjgj ghgh hghhj la colonne de gauche...",
+                "rightContent": "Texte dej  hgj hgjhg hgghj ghgh ghj ghjgghghgh jgjj  la colonne de droite..."
             }
         ],
-        "updated_at": "2026-09-10 11:16:16"
+        "updated_at": "2026-09-10 12:37:06"
     }
 }

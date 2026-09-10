@@ -31,6 +31,10 @@ function addBlock(type) {
         case 'image':
             newBlock.url = 'https://via.placeholder.com/600x200';
             break;
+        case 'columns-2':
+            newBlock.leftContent = 'Texte de la colonne de gauche...';
+            newBlock.rightContent = 'Texte de la colonne de droite...';
+            break;
         case 'spacer':
             break;
     }
@@ -97,6 +101,13 @@ function renderCanvas() {
                 case 'image':
                     html += `<strong>[Image]</strong>`;
                     html += `<input type="text" class="block-edit-field" placeholder="URL de l'image" value="${escapeHtml(block.url || '')}" oninput="updateBlockContent(${index}, 'url', this.value)">`;
+                    break;
+                case 'columns-2':
+                    html += `<strong>[2 Colonnes]</strong>`;
+                    html += `<div style="display: flex; gap: 10px; margin-top: 5px;">`;
+                    html += `<textarea class="block-edit-field" rows="3" placeholder="Colonne gauche" oninput="updateBlockContent(${index}, 'leftContent', this.value)">${escapeHtml(block.leftContent || '')}</textarea>`;
+                    html += `<textarea class="block-edit-field" rows="3" placeholder="Colonne droite" oninput="updateBlockContent(${index}, 'rightContent', this.value)">${escapeHtml(block.rightContent || '')}</textarea>`;
+                    html += `</div>`;
                     break;
                 case 'spacer':
                     html += `<strong>[Séparateur horizontal]</strong>`;

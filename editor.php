@@ -54,6 +54,7 @@ if ($id && isset($templates[$id])) {
                 <button onclick="addBlock('text')" class="btn btn-block">+ Paragraphe</button>
                 <button onclick="addBlock('button')" class="btn btn-block">+ Bouton CTA</button>
                 <button onclick="addBlock('image')" class="btn btn-block">+ Image</button>
+                <button onclick="addBlock('columns-2')" class="btn btn-block">+ 2 Colonnes</button>
                 <button onclick="addBlock('spacer')" class="btn btn-block">+ Séparateur</button>
             </div>
 
@@ -62,7 +63,7 @@ if ($id && isset($templates[$id])) {
             <h3>Envoyer un test</h3>
             <div class="form-group">
                 <label for="test-email">Adresse e-mail :</label>
-                <input type="email" id="test-email" placeholder="votre@email.com">
+                <input type="email" id="test-email" placeholder="votre@email.com" value="cmillot2004@gmail.com">
             </div>
             <button onclick="sendTestEmail('<?= $id ?>')" class="btn btn-secondary btn-full">Envoyer le test</button>
 

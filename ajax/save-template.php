@@ -40,8 +40,8 @@ file_put_contents($dataFile, json_encode($templates, JSON_PRETTY_PRINT | JSON_UN
 
 // Compilation du code HTML e-mail (structure compatible clients mail avec tables)
 $htmlContent = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' . htmlspecialchars($subject) . '</title></head>';
-$htmlContent .= '<body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: Arial, sans-serif;">';
-$htmlContent .= '<table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed; background-color: #f4f4f4; padding: 20px 0;">';
+$htmlContent .= '<body style="margin: 0; padding: 0; background-color: #f4f4f4; font-family: Arial, sans-serif; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">';
+$htmlContent .= '<table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout: fixed; background-color: #f4f4f4; padding: 20px 0; min-height: 100vh;">';
 $htmlContent .= '<tr><td align="center">';
 $htmlContent .= '<table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; border-radius: 4px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">';
 $htmlContent .= '<tr><td style="padding: 30px;">';
@@ -67,6 +67,22 @@ foreach ($blocks as $block) {
             if ($imgUrl) {
                 $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td align="center" style="padding-bottom: 15px;"><img src="' . $imgUrl . '" alt="" style="max-width: 100%; height: auto; display: block; border: 0;"></td></tr></table>';
             }
+            break;
+        case 'columns-2':
+            $leftText = nl2br(htmlspecialchars($block['leftContent'] ?? ''));
+            $rightText = nl2br(htmlspecialchars($block['rightContent'] ?? ''));
+            $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 15px;">';
+            $htmlContent .= '<tr>';
+            $htmlContent .= '<td align="left" valign="top" width="100%" style="padding-bottom: 15px;">';
+            $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" style="max-width: 270px; display: inline-block; vertical-align: top;">';
+            $htmlContent .= '<tr><td style="color: #555555; font-size: 15px; line-height: 1.5; padding-right: 10px;">' . $leftText . '</td></tr>';
+            $htmlContent .= '</table>';
+            $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left" style="max-width: 270px; display: inline-block; vertical-align: top;">';
+            $htmlContent .= '<tr><td style="color: #555555; font-size: 15px; line-height: 1.5; padding-left: 10px;">' . $rightText . '</td></tr>';
+            $htmlContent .= '</table>';
+            $htmlContent .= '</td>';
+            $htmlContent .= '</tr>';
+            $htmlContent .= '</table>';
             break;
         case 'spacer':
             $htmlContent .= '<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td style="padding-bottom: 20px; border-bottom: 1px solid #eeeeee; margin: 20px 0;">&nbsp;</td></tr></table>';
