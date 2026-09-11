@@ -76,5 +76,57 @@
             }
         ],
         "updated_at": "2026-09-10 13:59:53"
+    },
+    "tpl_6aa3b4bb538fb": {
+        "name": "Nouveau Template",
+        "subject": "",
+        "blocks": [
+            {
+                "type": "header",
+                "content": "Nom de votre entreprise \/ Logo"
+            },
+            {
+                "type": "title",
+                "content": "Titre principal de l'e-mail"
+            },
+            {
+                "type": "text",
+                "content": "Rédigez votre paragraphe de texte ici..."
+            },
+            {
+                "type": "button",
+                "text": "Cliquez ici",
+                "url": "https:\/\/example.com"
+            },
+            {
+                "type": "spacer"
+            },
+            {
+                "type": "columns-2",
+                "leftContent": "Texte de la colonne de gauche...",
+                "rightContent": "Texte de la colonne de droite..."
+            }
+        ],
+        "updated_at": "2026-09-11 09:58:51"
+    },
+    "tpl_6aa3d977d307c": {
+        "name": "test final",
+        "subject": "test final",
+        "blocks": [
+            {
+                "type": "header",
+                "content": "Nom de votre entreprise \/ Logo"
+            },
+            {
+                "type": "text",
+                "content": "RédLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.igez votre paragraphe de texte ici..."
+            },
+            {
+                "type": "columns-2",
+                "leftContent": "Texte Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.de la colonne de gauche...",
+                "rightContent": "Texte de la coLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.lonne de droite..."
+            }
+        ],
+        "updated_at": "2026-09-11 12:48:11"
     }
 }

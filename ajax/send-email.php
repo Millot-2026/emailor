@@ -1,72 +1,60 @@
 <?php
 /**
- * ajax/send-email.php - Envoi réel d'e-mail via PHPMailer et SMTP
+ * send-email.php - Script d'envoi d'e-mail via PHPMailer
  */
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../libs/PHPMailer/src/Exception.php';
+require __DIR__ . '/../libs/PHPMailer/src/PHPMailer.php';
+require __DIR__ . '/../libs/PHPMailer/src/SMTP.php';
+
+// Chargement des identifiants sécurisés hors du code principal
+$config = require __DIR__ . '/../config.php';
 
 header('Content-Type: application/json');
 
-$input = json_decode(file_get_contents('php://input'), true);
-$id = $input['id'] ?? '';
-$toField = trim($input['to'] ?? '');
+$data = json_decode(file_get_contents('php://input'), true);
+$templateId = $data['id'] ?? '';
+$recipient = $data['to'] ?? '';
 
-if (!$id || !$toField) {
-    echo json_encode(['success' => false, 'error' => 'ID du template ou destinataire manquant.']);
+if (!$templateId || !$recipient) {
+    echo json_encode(['success' => false, 'error' => 'Paramètres manquants.']);
     exit;
 }
 
-$dataFile = __DIR__ . '/../data/templates.json';
-if (!file_exists($dataFile)) {
-    echo json_encode(['success' => false, 'error' => 'Fichiers de données introuvables.']);
-    exit;
-}
-
-$templates = json_decode(file_get_contents($dataFile), true) ?: [];
-if (!isset($templates[$id])) {
+$templateFile = __DIR__ . '/../template/' . $templateId . '.html';
+if (!file_exists($templateFile)) {
     echo json_encode(['success' => false, 'error' => 'Template introuvable.']);
     exit;
 }
 
-$currentTemplate = $templates[$id];
-$htmlFile = __DIR__ . '/../template/' . $id . '.html';
+$htmlContent = file_get_contents($templateFile);
 
-if (!file_exists($htmlFile)) {
-    echo json_encode(['success' => false, 'error' => 'Le fichier HTML compilé n\'existe pas.']);
-    exit;
-}
-
-$htmlContent = file_get_contents($htmlFile);
-$subject = $currentTemplate['subject'] ?? 'Message';
-
-// Séparer les adresses e-mail par virgule
-$recipients = array_map('trim', explode(',', $toField));
+$dataFile = __DIR__ . '/../data/templates.json';
+$templates = file_exists($dataFile) ? (json_decode(file_get_contents($dataFile), true) ?: []) : [];
+$subject = $templates[$templateId]['subject'] ?? 'Message de votre application';
 
 $mail = new PHPMailer(true);
 
 try {
-    // Configuration du serveur SMTP
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'millot.christophe.2024@gmail.com';
-    $mail->Password   = 'smjncaorbfskqbmz';
+    $mail->Username   = $config['smtp_user'];
+    $mail->Password   = $config['smtp_pass'];
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
-    // Expéditeur
-    $mail->setFrom('millot.christophe.2024@gmail.com', 'Mon Application');
-
-    // Ajouter chaque destinataire proprement
-    foreach ($recipients as $to) {
-        if (filter_var($to, FILTER_VALIDATE_EMAIL)) {
-            $mail->addAddress($to);
+    $mail->setFrom($config['smtp_user'], 'Éditeur de Mails');
+    
+    $emails = array_map('trim', explode(',', $recipient));
+    foreach ($emails as $email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $mail->addAddress($email);
         }
     }
 
-    // Contenu de l'e-mail au format HTML
     $mail->isHTML(true);
     $mail->Subject = $subject;
     $mail->Body    = $htmlContent;

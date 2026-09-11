@@ -41,8 +41,8 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
     <link rel="stylesheet" href="assets/css/editor.css">
 </head>
 <body>
-    <div class="editor-layout">
-        <aside class="sidebar">
+    <div class="editor-layout" id="editorLayout">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="index.php" class="btn btn-secondary">&larr; Retour</a>
                 <h2>Éditeur</h2>
@@ -82,7 +82,7 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
             <div class="form-group" style="margin-bottom: 15px;">
                 <label style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: normal; cursor: pointer; line-height: 1.3;">
                     <input type="checkbox" id="select-all-emails" onchange="toggleAllEmails(this)" style="margin: 0; flex-shrink: 0; width: 16px; height: 16px;">
-                    <span>Toutes les adresses du répertoire actif</span>
+                    <span>Répertoire actif</span>
                 </label>
                 <div style="font-size: 11px; color: #888; margin-top: 3px;">(<a href="directory.php" target="_blank" style="color: #007bff; text-decoration: none;">Gérer les contacts</a>)</div>
             </div>
@@ -95,12 +95,13 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
                 <?php else: ?>
                     <button onclick="alert('Veuillez d\'abord enregistrer le template pour pouvoir le prévisualiser.');" class="btn btn-secondary" style="flex: 1;">Prévisualiser</button>
                 <?php endif; ?>
-                <button onclick="saveTemplate('<?= $id ?>')" class="btn btn-primary" style="flex: 1;">Enregistrer le template</button>
+                <button onclick="saveTemplate('<?= $id ?>')" class="btn btn-primary" style="flex: 1;">Enregistrer</button>
             </div>
         </aside>
 
         <main class="preview-area">
             <div class="preview-toolbar">
+                <button type="button" class="sidebar-floating-btn" id="sidebarFloatingToggle" title="Rétracter/Déployer le poste de pilotage">⚙</button>
                 <span>Prévisualisation en direct</span>
             </div>
             <div id="email-canvas" class="email-canvas">
@@ -152,6 +153,13 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
             });
         }
     </script>
+
+    <script>
+    document.getElementById('sidebarFloatingToggle').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('collapsed');
+    });
+    </script>
+
     <script src="assets/js/editor.js"></script>
 </body>
 </html>
