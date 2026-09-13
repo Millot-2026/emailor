@@ -39,6 +39,7 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
     <meta charset="UTF-8">
     <title>Éditeur de Template d'E-mail</title>
     <link rel="stylesheet" href="assets/css/editor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .block-toolbox {
             display: flex;
@@ -157,7 +158,7 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <a href="index.php" class="btn btn-secondary">&larr; Retour</a>
-                <h2>Éditeur</h2>
+                <h2><i class="fa-solid fa-feather-pointed"></i> Éditeur</h2>
             </div>
             
             <div class="form-group">
@@ -172,8 +173,8 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
 
             <hr>
 
-            <h3 class="btn btn-secondary btn-full">Ajouter un bloc</h3>
-            <div class="block-toolbox">
+            <h3 class="btn btn-secondary btn-full" id="toggle-blocks" style="cursor: pointer;">Ajouter un bloc</h3>
+            <div class="block-toolbox" id="blockToolbox" style="display: none;">
                 <button type="button" onclick="addBlock('header')" class="btn-fini">
                     <span class="rivet-gauche"></span>
                     + En-tête / Logo
@@ -298,6 +299,15 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
     document.getElementById('sidebarFloatingToggle').addEventListener('click', function() {
         document.getElementById('sidebar').classList.toggle('collapsed');
     });
+
+
+document.getElementById('toggle-blocks').addEventListener('click', function() {
+    const toolbox = document.getElementById('blockToolbox');
+    toolbox.style.display = (toolbox.style.display === 'none' ? 'flex' : 'none');
+});
+
+
+
     </script>
 
     <script src="assets/js/editor.js"></script>
