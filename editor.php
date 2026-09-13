@@ -172,7 +172,7 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
 
             <hr>
 
-            <h3>Ajouter un bloc</h3>
+            <h3 class="btn btn-secondary btn-full">Ajouter un bloc</h3>
             <div class="block-toolbox">
                 <button type="button" onclick="addBlock('header')" class="btn-fini">
                     <span class="rivet-gauche"></span>
@@ -213,7 +213,7 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
 
             <hr>
 
-            <h3>Envoyer un test</h3>
+            <h3 class="btn btn-secondary btn-full">Envoyer un test</h3>
             <div class="form-group">
                 <label for="test-email">Adresse e-mail :</label>
                 <input type="text" id="test-email" placeholder="votre@email.com" value="<?= htmlspecialchars($defaultEmail) ?>">
