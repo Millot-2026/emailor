@@ -1,132 +1,22 @@
 {
-    "tpl_6aa28a83e0146": {
-        "name": "test final",
-        "subject": "test final",
-        "blocks": [
-            {
-                "type": "header",
-                "content": "test final333"
-            },
-            {
-                "type": "text",
-                "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum."
-            },
-            {
-                "type": "title",
-                "content": "Titre principal"
-            },
-            {
-                "type": "image",
-                "url": "https:\/\/raw.githubusercontent.com\/Millot-2026\/emailor\/main\/assets\/images\/image-test.png"
-            },
-            {
-                "type": "button",
-                "text": "Cliquez ici",
-                "url": "https:\/\/example.com"
-            },
-            {
-                "type": "columns-2",
-                "leftContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.",
-                "rightContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum."
-            },
-            {
-                "type": "columns-2",
-                "leftContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem",
-                "rightContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem"
-            },
-            {
-                "type": "image",
-                "url": "https:\/\/raw.githubusercontent.com\/Millot-2026\/emailor\/main\/assets\/images\/image-test.png"
-            }
-        ],
-        "updated_at": "2026-09-10 14:18:18"
-    },
-    "tpl_6aa26cd63b69e": {
-        "name": "test colonnes",
-        "subject": "test colonnes",
-        "blocks": [
-            {
-                "type": "header",
-                "content": "test colonnes"
-            },
-            {
-                "type": "image",
-                "url": "https:\/\/raw.githubusercontent.com\/Millot-2026\/emailor\/main\/assets\/images\/image-test.png"
-            },
-            {
-                "type": "title",
-                "content": "Test 22"
-            },
-            {
-                "type": "text",
-                "content": "RédigeLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.z votre paragraphe de texte ici..."
-            },
-            {
-                "type": "button",
-                "text": "Cliquez ici",
-                "url": "https:\/\/example.com"
-            },
-            {
-                "type": "spacer"
-            },
-            {
-                "type": "columns-2",
-                "leftContent": "Texte deghjhgj hjj  hj hgj j ghjgj ghgh hghhj la colonne de gauche...",
-                "rightContent": "Texte dej  hgj hgjhg hgghj ghgh ghj ghjgghghgh jgjj  la colonne de droite..."
-            }
-        ],
-        "updated_at": "2026-09-10 13:59:53"
-    },
-    "tpl_6aa3b4bb538fb": {
+    "tpl_6aa55eb7cae64": {
         "name": "Nouveau Template",
         "subject": "",
         "blocks": [
-            {
-                "type": "header",
-                "content": "Nom de votre entreprise \/ Logo"
-            },
             {
                 "type": "title",
                 "content": "Titre principal de l'e-mail"
             },
             {
-                "type": "text",
-                "content": "Rédigez votre paragraphe de texte ici..."
-            },
-            {
-                "type": "button",
-                "text": "Cliquez ici",
-                "url": "https:\/\/example.com"
-            },
-            {
-                "type": "spacer"
-            },
-            {
                 "type": "columns-2",
-                "leftContent": "Texte de la colonne de gauche...",
-                "rightContent": "Texte de la colonne de droite..."
+                "leftContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride",
+                "rightContent": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride"
+            },
+            {
+                "type": "image",
+                "url": "uploads\/img_6aa55fd0c036c.jpeg"
             }
         ],
-        "updated_at": "2026-09-11 09:58:51"
-    },
-    "tpl_6aa3d977d307c": {
-        "name": "test final",
-        "subject": "test final",
-        "blocks": [
-            {
-                "type": "header",
-                "content": "Nom de votre entreprise \/ Logo"
-            },
-            {
-                "type": "text",
-                "content": "RédLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.igez votre paragraphe de texte ici..."
-            },
-            {
-                "type": "columns-2",
-                "leftContent": "Texte Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.de la colonne de gauche...",
-                "rightContent": "Texte de la coLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.lonne de droite..."
-            }
-        ],
-        "updated_at": "2026-09-11 12:48:11"
+        "updated_at": "2026-09-12 16:21:26"
     }
 }

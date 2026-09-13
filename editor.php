@@ -39,6 +39,118 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
     <meta charset="UTF-8">
     <title>Éditeur de Template d'E-mail</title>
     <link rel="stylesheet" href="assets/css/editor.css">
+    <style>
+        .block-toolbox {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .btn-fini {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 48px;
+            background: #d48f2f;
+            background: -webkit-linear-gradient(90deg,rgba(212, 143, 47, 1) 0%, rgba(112, 70, 11, 1) 15%, rgba(153, 99, 24, 1) 25%, rgba(212, 143, 47, 1) 50%, rgba(153, 99, 24, 1) 75%, rgba(112, 70, 11, 1) 85%, rgba(212, 143, 47, 1) 100%);
+            background: -moz-linear-gradient(90deg,rgba(212, 143, 47, 1) 0%, rgba(112, 70, 11, 1) 15%, rgba(153, 99, 24, 1) 25%, rgba(212, 143, 47, 1) 50%, rgba(153, 99, 24, 1) 75%, rgba(112, 70, 11, 1) 85%, rgba(212, 143, 47, 1) 100%);
+            background: linear-gradient(90deg,rgba(212, 143, 47, 1) 0%, rgba(112, 70, 11, 1) 15%, rgba(153, 99, 24, 1) 25%, rgba(212, 143, 47, 1) 50%, rgba(153, 99, 24, 1) 75%, rgba(112, 70, 11, 1) 85%, rgba(212, 143, 47, 1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient(
+              startColorstr="#D48F2F",
+              endColorstr="#D48F2F",
+              GradientType=1
+            );
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            text-transform: uppercase;
+        }
+
+        .btn-fini::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .btn-fini:hover::before {
+            left: 100%;
+        }
+
+        .btn-fini:hover {
+            position: relative;
+            width: 100%;
+            height: 48px;
+            background: #966724;
+            background: linear-gradient(
+                    90deg,
+                    rgb(160, 108, 34) 0%,
+                    rgba(112, 70, 11, 1) 15%,
+                    rgba(153, 99, 24, 1) 25%,
+                    rgb(98, 63, 13) 50%,
+                    rgba(153, 99, 24, 1) 75%,
+                    rgba(112, 70, 11, 1) 85%,
+                    rgb(160, 108, 34) 100%);
+            
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 10px 12px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            box-sizing: border-box;
+            text-transform: uppercase;
+        }
+        .btn-fini .rivet-gauche,
+        .btn-fini .rivet-droite {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #ffe6a0, #b8862f 50%, #5e330a 100%);
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+        .btn-fini .rivet-gauche::after,
+        .btn-fini .rivet-droite::after {
+            content: '';
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 35%, #fff, #99621b);
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.8), 0 1px 2px rgba(0,0,0,0.5);
+        }
+        .btn-fini .rivet-gauche {
+            left: 14px;
+        }
+        .btn-fini .rivet-droite {
+            right: 14px;
+        }
+    </style>
 </head>
 <body>
     <div class="editor-layout" id="editorLayout">
@@ -62,13 +174,41 @@ $defaultEmail = $activeEmails[0] ?? 'cmillot2004@gmail.com';
 
             <h3>Ajouter un bloc</h3>
             <div class="block-toolbox">
-                <button onclick="addBlock('header')" class="btn btn-block">+ En-tête / Logo</button>
-                <button onclick="addBlock('title')" class="btn btn-block">+ Titre H1</button>
-                <button onclick="addBlock('text')" class="btn btn-block">+ Paragraphe</button>
-                <button onclick="addBlock('button')" class="btn btn-block">+ Bouton CTA</button>
-                <button onclick="addBlock('image')" class="btn btn-block">+ Image</button>
-                <button onclick="addBlock('columns-2')" class="btn btn-block">+ 2 Colonnes</button>
-                <button onclick="addBlock('spacer')" class="btn btn-block">+ Séparateur</button>
+                <button type="button" onclick="addBlock('header')" class="btn-fini">
+                    <span class="rivet-gauche"></span>
+                    + En-tête / Logo
+                    <span class="rivet-droite"></span>
+                </button>
+                <button type="button" onclick="addBlock('title')" class="btn-fini">
+                    <span class="rivet-gauche"></span>
+                    + Titre H1
+                    <span class="rivet-droite"></span>
+                </button>
+                <button type="button" onclick="addBlock('text')" class="btn-fini">
+                    <span class="rivet-gauche"></span>
+                    + Paragraphe
+                    <span class="rivet-droite"></span>
+                </button>
+                <button type="button" onclick="addBlock('button')" class="btn-fini">
+                    <span class="rivet-gauche"></span>
+                    + Bouton CTA
+                    <span class="rivet-droite"></span>
+                </button>
+                <button type="button" onclick="addBlock('image')" class="btn-fini">
+                    <span class="rivet-gauche"></span>
+                    + Image
+                    <span class="rivet-droite"></span>
+                </button>
+                <button type="button" onclick="addBlock('columns-2')" class="btn-fini">
+                    <span class="rivet-gauche"></span>
+                    + 2 Colonnes
+                    <span class="rivet-droite"></span>
+                </button>
+                <button type="button" onclick="addBlock('spacer')" class="btn-fini">
+                    <span class="rivet-gauche"></span>
+                    + Séparateur
+                    <span class="rivet-droite"></span>
+                </button>
             </div>
 
             <hr>

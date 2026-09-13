@@ -13,8 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function addBlock(type) {
     let newBlock = { type: type };
-    
-    switch(type) {
+
+    switch (type) {
         case 'header':
             newBlock.content = 'Nom de votre entreprise / Logo';
             break;
@@ -29,7 +29,7 @@ function addBlock(type) {
             newBlock.url = 'https://example.com';
             break;
         case 'image':
-            newBlock.url = 'https://via.placeholder.com/600x200';
+            newBlock.url = '';
             break;
         case 'columns-2':
             newBlock.leftContent = 'Texte de la colonne de gauche...';
@@ -38,7 +38,7 @@ function addBlock(type) {
         case 'spacer':
             break;
     }
-    
+
     blocks.push(newBlock);
     renderCanvas();
 }
@@ -62,11 +62,38 @@ function updateBlockContent(index, field, value) {
     blocks[index][field] = value;
 }
 
+function handleBlockImageSelect(input, index) {
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const formData = new FormData();
+        formData.append('image', file);
+
+        fetch('ajax/upload-image.php', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json())
+            .then(result => {
+                if (result.success) {
+                    document.getElementById(`image-path-${index}`).value = result.path;
+                    blocks[index].url = result.path;
+                    renderCanvas();
+                } else {
+                    alert('Erreur lors de l\'upload : ' + (result.error || 'Inconnue'));
+                }
+            })
+            .catch(error => {
+                console.error('Erreur:', error);
+                alert('Erreur réseau lors de l\'upload de l\'image.');
+            });
+    }
+}
+
 function renderCanvas() {
     const canvas = document.getElementById('email-canvas');
-    
+
     let html = '<div class="email-container-mock">';
-    
+
     if (blocks.length === 0) {
         html += '<p style="text-align: center; color: #aaa; margin: 40px 0;">Le template est vide. Ajoutez des blocs depuis la barre latérale.</p>';
     } else {
@@ -77,8 +104,8 @@ function renderCanvas() {
             if (index < blocks.length - 1) html += `<button onclick="moveBlock(${index}, 1)" title="Descendre">&darr;</button>`;
             html += `<button onclick="removeBlock(${index})" title="Supprimer">&times;</button>`;
             html += `</div>`;
-            
-            switch(block.type) {
+
+            switch (block.type) {
                 case 'header':
                     html += `<strong>[En-tête]</strong>`;
                     html += `<input type="text" class="block-edit-field" value="${escapeHtml(block.content || '')}" oninput="updateBlockContent(${index}, 'content', this.value)">`;
@@ -100,7 +127,11 @@ function renderCanvas() {
                     break;
                 case 'image':
                     html += `<strong>[Image]</strong>`;
-                    html += `<input type="text" class="block-edit-field" placeholder="URL de l'image" value="${escapeHtml(block.url || '')}" oninput="updateBlockContent(${index}, 'url', this.value)">`;
+                    html += `<input type="file" id="file-input-${index}" accept="image/*" style="display: none;" onchange="handleBlockImageSelect(this, ${index})">`;
+                    html += `<input type="text" class="block-edit-field" id="image-path-${index}" placeholder="Cliquez pour choisir une image..." value="${escapeHtml(block.url || '')}" readonly onclick="document.getElementById('file-input-${index}').click();" style="cursor: pointer; margin-bottom: 5px;">`;
+                    if (block.url) {
+                        html += `<img src="${escapeHtml(block.url)}" style="max-width: 100%; height: auto; display: block; border-radius: 3px; border: 1px solid #b87333;">`;
+                    }
                     break;
                 case 'columns-2':
                     html += `<strong>[2 Colonnes]</strong>`;
@@ -113,11 +144,11 @@ function renderCanvas() {
                     html += `<strong>[Séparateur horizontal]</strong>`;
                     break;
             }
-            
+
             html += `</div>`;
         });
     }
-    
+
     html += '</div>';
     canvas.innerHTML = html;
 }
@@ -135,32 +166,32 @@ function escapeHtml(text) {
 function saveTemplate(id) {
     const name = document.getElementById('template-name').value;
     const subject = document.getElementById('email-subject').value;
-    
+
     const data = {
         id: id,
         name: name,
         subject: subject,
         blocks: blocks
     };
-    
+
     fetch('ajax/save-template.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(result => {
-        if (result.success) {
-            alert('Template enregistré avec succès !');
-            if (!id && result.id) {
-                window.location.href = 'editor.php?id=' + result.id;
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                alert('Template enregistré avec succès !');
+                if (!id && result.id) {
+                    window.location.href = 'editor.php?id=' + result.id;
+                }
+            } else {
+                alert('Erreur lors de l\'enregistrement : ' + (result.error || 'Inconnue'));
             }
-        } else {
-            alert('Erreur lors de l\'enregistrement : ' + (result.error || 'Inconnue'));
-        }
-    })
-    .catch(error => {
-        console.error('Erreur:', error);
-        alert('Erreur réseau lors de l\'enregistrement.');
-    });
+        })
+        .catch(error => {
+            console.error('Erreur:', error);
+            alert('Erreur réseau lors de l\'enregistrement.');
+        });
 }
